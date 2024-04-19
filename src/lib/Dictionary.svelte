@@ -1,0 +1,15 @@
+<script lang="ts">
+  export let word: string;
+  export let type: string;
+  export let pronunciation: string;
+  export let description: string;
+</script>
+
+<div class="flex flex-col items-start">
+  <h1 class="text-5xl mb-1">{word}</h1>
+  <div class="flex gap-2 text-md mb-3">
+    <p class="text-sm">/{pronunciation}/</p>
+    <p class="text-sm">{type}</p>
+  </div>
+  <p>{description}</p>
+</div>
