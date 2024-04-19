@@ -1,0 +1,7 @@
+services:
+  vietz.dev:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "8085:80"
