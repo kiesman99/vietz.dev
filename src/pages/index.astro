@@ -1,11 +1,33 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import Dictionary from "../components/Dictionary.astro";
 ---
 
+<script>
+  import { annotate } from "rough-notation";
+
+  const fullStack = document.querySelector("#fullstack");
+
+  if (fullStack) {
+    annotate(fullStack as HTMLElement, {
+      type: "underline",
+      color: "#000",
+    }).show();
+  }
+</script>
+
 <Layout>
-	<Welcome />
+  <Dictionary
+    word="Moin!"
+    pronunciation="mɔyn"
+    type="INTERJECTION"
+    description="Greeting in northern Germany"
+  />
+
+  <div class="mt-10">
+    <p>
+      Hey I am Justin Vietz, a <span id="fullstack">full-stack</span> developer by
+      ❤️
+    </p>
+  </div>
 </Layout>
