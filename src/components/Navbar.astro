@@ -3,6 +3,12 @@
     <li>
       <a class:list={[{ active: Astro.url.pathname === "/" }]} href="/">home</a>
     </li>
+    <li>
+      <a
+        class:list={[{ active: Astro.url.pathname === "/projects" }]}
+        href="/projects">projects</a
+      >
+    </li>
   </ul>
 </nav>
 
@@ -10,20 +16,30 @@
   nav > ul > li > a {
     &::before {
       content: "{ ";
-      color: #fff;
+      color: transparent; /* Braces are transparent by default */
+      transition: color 0.2s ease-in-out; /* Subtle transition for brace color */
     }
     &::after {
       content: " }";
-      color: #fff;
+      color: transparent; /* Braces are transparent by default */
+      transition: color 0.2s ease-in-out; /* Subtle transition for brace color */
     }
-  }
 
-  .active {
-    &::before {
-      color: #000;
+    &.active {
+      &::before {
+        color: #000; /* Black braces for the active link */
+      }
+      &::after {
+        color: #000; /* Black braces for the active link */
+      }
     }
-    &::after {
-      color: #000;
+
+    /* Show light gray braces on hover for non-active links */
+    &:hover:not(.active) {
+      &::before,
+      &::after {
+        color: #aaa;
+      }
     }
   }
 </style>

@@ -1,0 +1,64 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const projects = [
+  {
+    title: "WorkTime",
+    description: "A tool collection centered around time management for work.",
+    url: "https://worktime.vietz.dev",
+    date: "2024", // Assuming a start or last updated year, adjust as needed
+  },
+  // Add more projects here in the future
+];
+---
+
+<Layout title="Projects | Justin Vietz">
+  <div class="mt-10">
+    <h1 class="text-3xl font-bold mb-8">projects</h1>
+    <ul class="space-y-6">
+      {
+        projects.map((project) => (
+          <li class="group">
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block p-4 rounded-lg border-2 border-black transition-all duration-300 ease-in-out group-hover:-translate-x-1 group-hover:-translate-y-1 hover:shadow-[4px_4px_0px_#000000]"
+            >
+              <div class="flex flex-col md:flex-row justify-between md:items-center">
+                <div class="flex-grow">
+                  <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-semibold transition-colors duration-300 ease-in-out">
+                      {project.title}
+                    </h2>
+                    <span class="text-xs md:hidden">
+                      {project.date}
+                    </span>
+                  </div>
+                  <p class="text-gray-700  mt-1">{project.description}</p>
+                </div>
+                <div class="mt-4 md:mt-0 md:ml-6 flex flex-col items-start md:items-end">
+                  <span class="text-xs hidden md:block mb-1">
+                    {project.date}
+                  </span>
+                  <span class="font-semibold group-hover:underline">
+                    Open &rarr;
+                  </span>
+                </div>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Layout>
+
+<style>
+  /* Minimal styling, relying mostly on Tailwind if used, or simple CSS */
+  /* Ensure Layout.astro provides base styling or import global.css if needed */
+  h1 {
+    color: #333; /* Adjust to your theme */
+  }
+  /* Add more specific styles if needed, inspired by antfu.me */
+</style>
