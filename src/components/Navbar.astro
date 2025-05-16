@@ -1,12 +1,22 @@
+---
+const currentPage = new URL(Astro.url.pathname, Astro.url).pathname;
+const trimmedPath = currentPage.endsWith("/")
+  ? currentPage.slice(0, -1)
+  : currentPage;
+
+function matchesPath(path: string): boolean {
+  return path === trimmedPath;
+}
+---
+
 <nav class="container mx-auto px-4 py-5 border-b border-black">
   <ul class="flex gap-3">
     <li>
-      <a class:list={[{ active: Astro.url.pathname === "/" }]} href="/">home</a>
+      <a class:list={[{ active: matchesPath("") }]} href="/">home</a>
     </li>
     <li>
-      <a
-        class:list={[{ active: Astro.url.pathname === "/projects" }]}
-        href="/projects">projects</a
+      <a class:list={[{ active: matchesPath("/projects") }]} href="/projects"
+        >projects</a
       >
     </li>
   </ul>
