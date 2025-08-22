@@ -1,0 +1,55 @@
+---
+interface Props {
+  href: string;
+  target?: '_blank' | '_parent' | '_self' | '_top';
+  title: string;
+  description?: string;
+  date?: string;
+
+  titleTransitionName?: string;
+}
+
+const {
+  href,
+  target,
+  title,
+  description,
+  date,
+
+  titleTransitionName
+} = Astro.props;
+
+const actualTarget = target ?? '_self';
+---
+
+<li class="group">
+  <a
+    href={href}
+    target={actualTarget}
+    rel="noopener noreferrer"
+    class="block p-4 rounded-lg border-2 border-black transition-all duration-300 ease-in-out group-hover:-translate-x-1 group-hover:-translate-y-1 hover:shadow-[4px_4px_0px_#aaa]"
+  >
+    <div class="flex flex-col md:flex-row justify-between md:items-center">
+      <div class="flex-grow">
+        <div class="flex justify-between items-center">
+          <h2
+            class="text-xl font-semibold transition-colors duration-300 ease-in-out"
+            transition:name={titleTransitionName}
+          >
+            {title}
+          </h2>
+          <span class="text-xs md:hidden">
+            {date}
+          </span>
+        </div>
+        <p class="text-gray-700 mt-1">{description}</p>
+      </div>
+      <div class="mt-4 md:mt-0 md:ml-6 flex flex-col items-start md:items-end">
+        <span class="text-xs hidden md:block mb-1">
+          {date}
+        </span>
+        <span class="font-semibold group-hover:underline"> Open &rarr; </span>
+      </div>
+    </div>
+  </a>
+</li>

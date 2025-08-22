@@ -5,7 +5,11 @@ const trimmedPath = currentPage.endsWith("/")
   : currentPage;
 
 function matchesPath(path: string): boolean {
-  return path === trimmedPath;
+  if (path === '') {
+    return trimmedPath === '';
+  }
+
+  return trimmedPath.startsWith(path);
 }
 ---
 
@@ -18,6 +22,9 @@ function matchesPath(path: string): boolean {
       <a class:list={[{ active: matchesPath("/projects") }]} href="/projects"
         >projects</a
       >
+    </li>
+    <li>
+      <a class:list={[{ active: matchesPath("/blog") }]} href="/blog">blog</a>
     </li>
   </ul>
 </nav>
